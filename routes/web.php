@@ -3,6 +3,7 @@
 use  Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\AdminController;
 use  App\Http\Controllers\Backend\UserController;
+use  App\Http\Controllers\Backend\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +32,26 @@ Route::prefix('users')->group(function(){
     Route::get('/view' , [UserController::class , 'UserView'])->name('user.view');
 
     Route::get('/add' , [UserController::class , 'UserAdd'])->name('users.add');
-   
+
     Route::post('/store' , [UserController::class , 'UserStore'])->name('users.store');
-    
+
     Route::get('/edit/{id}' , [UserController::class , 'UserEdit'])->name('users.edit');
-    
+
     Route::post('/update/{id}' , [UserController::class , 'UserUpdate'])->name('users.update');
 
     Route::get('/delete/{id}' , [UserController::class , 'UserDelete'])->name('users.delete');
 
+});
+
+// User Profile And Password
+Route::prefix('profiles')->group(function(){
+
+    Route::get('/view' , [ProfileController::class , 'ProfileView'])->name('profile.view');
+    Route::get('/edite' , [ProfileController::class , 'ProfileEdite'])->name('profile.edit');
+
+    Route::post('/store' , [ProfileController::class , 'ProfileStore'])->name('profile.store');
+
+    Route::get('/password/view' , [ProfileController::class , 'PasswordView'])->name('password.view');
+
+    Route::get('/password/update' , [ProfileController::class , 'PasswordUpdate'])->name('password.update');
 });
